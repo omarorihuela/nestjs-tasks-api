@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Task, TaskStatus} from './task.entity';
+import { UpdateTaskDto } from './dto/task.dto';
 
 @Injectable()
 export class TasksService {
@@ -26,7 +27,7 @@ export class TasksService {
         return newTask;
     }
 
-    updateTask(id: string, taskData: Task): Task | string{
+    updateTask(id: string, taskData: UpdateTaskDto): Task | string{
         const { title, description, status } = taskData;
         const taskIndex = this.tasks.findIndex((t) => t.id === id);
         if (taskIndex === -1) {
